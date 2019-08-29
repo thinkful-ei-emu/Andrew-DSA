@@ -30,30 +30,45 @@ function isEmpty(linkedList) {
   else { return false; }
 }
 
-function findPrevious(item,linkedList){
-  let currNode=linkedList.head;
-  while(currNode!==null){
-   
-    if(!currNode.next){
-      return null;}
-    if(currNode.next.value===item){
+function findPrevious(item, linkedList) {
+  let currNode = linkedList.head;
+  while (currNode !== null) {
+    if (!currNode.next) {
+      return null;
+    }
+
+    if (currNode.next.value === item) {
       return currNode.value;
     }
-    currNode=currNode.next;
-    
-    
+
+    currNode = currNode.next;
   }
 }
 
-function findLast(list){
-  let currNode=list.head;
+function findLast(list) {
+  let currNode = list.head;
 
-  while(currNode!==null){
-    if(!currNode.next){
+  while (currNode !== null) {
+    if (!currNode.next) {
       return currNode.value;
     }
-    currNode=currNode.next;
-  
+    currNode = currNode.next;
+
+  }
+}
+
+function reverse(list) {
+  let prev = null;
+  let next = null;
+  let curr = list.head;
+
+  while (curr !== null) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    
+    if (next === null) list.head = curr;
+    else curr = next;
   }
 }
 
@@ -68,17 +83,29 @@ function main() {
 
   console.log(display(SLL));
 
-  SLL.insertBefore('Test', 'Helo');
-  SLL.insertAfter('Boo', 'Boomer');
-  SLL.insertAt('TestAT', 0);
+  console.log(display(SLL));
+
+  reverse(SLL);
+
+  console.log(display(SLL));
+
+  // SLL.insertBefore('Test', 'Helo');
+  // SLL.insertAfter('Boo', 'Boomer');
+  // SLL.insertAt('TestAT', 0);
 
   // console.log(SLL);
-  console.log(display(SLL));
-  console.log(size(SLL));
-  console.log('SLL', isEmpty(SLL));
-  console.log('New', isEmpty(new LinkedList()));
-  console.log('Previous Item',findPrevious('Boo',SLL));
-  console.log('Last Item',findLast(SLL));
+  // console.log(display(SLL));
+  // console.log(size(SLL));
+  // console.log('SLL', isEmpty(SLL));
+  // console.log('New', isEmpty(new LinkedList()));
+  // console.log('Previous Item', findPrevious('Boo', SLL));
+  // console.log('Last Item', findLast(SLL));
 }
 
 main();
+
+/**
+ * 4. Mystery Program
+ *  Removes duplicates from linked list
+ *  O(n^2) nested while 
+ */
