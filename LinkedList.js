@@ -17,10 +17,9 @@ class LinkedList {
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
-    }
-    else {
+    } else {
       let tempNode = this.head;
-      
+
       while (tempNode.next !== null) {
         tempNode = tempNode.next;
       }
@@ -36,8 +35,7 @@ class LinkedList {
 
     if (this.head.value === value) {
       this.head = new _Node(item, currNode);
-    }
-    else {
+    } else {
       while (currNode.next !== null) {
         if (currNode.next.value === value) {
           const newNode = new _Node(item, currNode.next);
@@ -46,12 +44,39 @@ class LinkedList {
         }
 
         currNode = currNode.next;
-      }  
+      }
     }
   }
 
-  insertAfter() {
+  insertAfter(item, value) {
+    let currNode = this.head;
+    while (currNode !== null) {
+      if (currNode.value === value) {
+        currNode.next = new _Node(item, currNode.next);
+        return;
+      } else {
+        currNode = currNode.next;
+      }
+    }
+  }
 
+  insertAt(value, index) {
+    let currNode = this.head;
+    if (index === 0) {
+      this.insertBefore(value, currNode.value);
+      return;
+    }
+    for (let i = 0; i < index - 1; i++) {
+      if (currNode !== null) {
+        console.log(currNode.value);
+        currNode = currNode.next;
+      } else {
+        console.log("invalid Index");
+        return;
+      }
+    }
+    console.log(currNode.value);
+    currNode.next = new _Node(value, currNode.next);
   }
 
   find(item) {
@@ -78,13 +103,13 @@ class LinkedList {
 
     let currNode = this.head;
     let previousNode = this.head;
-    while ((currNode !== null) && (currNode.value !== item)) {
+    while (currNode !== null && currNode.value !== item) {
       previousNode = currNode;
       currNode = currNode.next;
     }
 
     if (currNode === null) {
-      console.log('Item not found.');
+      console.log("Item not found.");
       return;
     }
 
@@ -92,12 +117,11 @@ class LinkedList {
   }
 
   print() {
-    let list = '';
+    let list = "";
     let currNode = this.head;
     while (currNode !== null) {
-      list += (currNode.next !== null)
-        ? `${currNode.value} -> `
-        : `${currNode.value}`;
+      list +=
+        currNode.next !== null ? `${currNode.value} -> ` : `${currNode.value}`;
 
       currNode = currNode.next;
     }

@@ -12,6 +12,8 @@ function main() {
   console.log(SLL.print());
 
   SLL.insertBefore('Test', 'Helo');
+  SLL.insertAfter('Boo','Boomer');
+  SLL.insertAt('TestAT',0);
 
   // console.log(SLL);
   console.log(SLL.print());
