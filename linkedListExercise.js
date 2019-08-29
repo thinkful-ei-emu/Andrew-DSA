@@ -1,7 +1,7 @@
-const LinkedList = require('./LinkedList');
+const LinkedList = require("./LinkedList");
 
 function display(linkedList) {
-  let list = '';
+  let list = "";
   let currNode = linkedList.head;
   while (currNode !== null) {
     list +=
@@ -26,8 +26,11 @@ function size(linkedList) {
 }
 
 function isEmpty(linkedList) {
-  if (linkedList.head === null) { return true; }
-  else { return false; }
+  if (linkedList.head === null) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function findPrevious(item, linkedList) {
@@ -53,7 +56,6 @@ function findLast(list) {
       return currNode.value;
     }
     currNode = currNode.next;
-
   }
 }
 
@@ -67,27 +69,63 @@ function reverse(list) {
     curr.next = prev;
     prev = curr;
     
+
     if (next === null) list.head = curr;
-    else curr = next;
+    curr = next;
   }
 }
+
+function thirdFromEnd(list) {
+  let curr = list.head;
+  while (curr !== null) {
+    if (curr.next.next.next === null) {
+      return curr.value;
+    } else {
+      curr = curr.next;
+    }
+  }
+}
+
+function middleOfList(list){
+  let single=list.head;
+  let double=list.head;
+
+  while(double!==null){
+    if(double.next===null){
+      return single.value;
+    }
+    single=single.next;
+    double=double.next.next;
+   console.log(single);
+  
+    
+  }
+  return single.value;
+
+}
+
+
+
 
 function main() {
   const SLL = new LinkedList();
 
-  SLL.insertFirst('Apollo');
-  SLL.insertLast('Boomer');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Starbuck');
+  SLL.insertFirst("Apollo");
+  SLL.insertLast("Boomer");
+  SLL.insertLast("Helo");
+  SLL.insertLast("Husker");
+  SLL.insertLast("Starbuck");
+  SLL.insertLast("Last")
 
   console.log(display(SLL));
 
   console.log(display(SLL));
 
-  reverse(SLL);
+   reverse(SLL);
 
   console.log(display(SLL));
+  console.log(thirdFromEnd(SLL));
+  console.log(middleOfList(SLL));
 
   // SLL.insertBefore('Test', 'Helo');
   // SLL.insertAfter('Boo', 'Boomer');
@@ -107,5 +145,5 @@ main();
 /**
  * 4. Mystery Program
  *  Removes duplicates from linked list
- *  O(n^2) nested while 
+ *  O(n^2) nested while
  */
