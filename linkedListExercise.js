@@ -50,7 +50,6 @@ function main() {
   console.log(size(SLL));
   console.log('SLL', isEmpty(SLL));
   console.log('New', isEmpty(new LinkedList()));
-
 }
 
 main();
