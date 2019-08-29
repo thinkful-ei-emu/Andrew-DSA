@@ -30,6 +30,33 @@ function isEmpty(linkedList) {
   else { return false; }
 }
 
+function findPrevious(item,linkedList){
+  let currNode=linkedList.head;
+  while(currNode!==null){
+   
+    if(!currNode.next){
+      return null;}
+    if(currNode.next.value===item){
+      return currNode.value;
+    }
+    currNode=currNode.next;
+    
+    
+  }
+}
+
+function findLast(list){
+  let currNode=list.head;
+
+  while(currNode!==null){
+    if(!currNode.next){
+      return currNode.value;
+    }
+    currNode=currNode.next;
+  
+  }
+}
+
 function main() {
   const SLL = new LinkedList();
 
@@ -50,6 +77,8 @@ function main() {
   console.log(size(SLL));
   console.log('SLL', isEmpty(SLL));
   console.log('New', isEmpty(new LinkedList()));
+  console.log('Previous Item',findPrevious('Boo',SLL));
+  console.log('Last Item',findLast(SLL));
 }
 
 main();
