@@ -1,7 +1,8 @@
-const LinkedList = require("./LinkedList");
+const LinkedList = require('./LinkedList');
+const CycleList = require('./CycleList');
 
 function display(linkedList) {
-  let list = "";
+  let list = '';
   let currNode = linkedList.head;
   while (currNode !== null) {
     list +=
@@ -68,7 +69,7 @@ function reverse(list) {
     next = curr.next;
     curr.next = prev;
     prev = curr;
-    
+
 
     if (next === null) list.head = curr;
     curr = next;
@@ -86,58 +87,77 @@ function thirdFromEnd(list) {
   }
 }
 
-function middleOfList(list){
-  let single=list.head;
-  let double=list.head;
+function middleOfList(list) {
+  let single = list.head;
+  let double = list.head;
 
-  while(double!==null){
-    if(double.next===null){
+  while (double !== null) {
+    if (double.next === null) {
       return single.value;
     }
-    single=single.next;
-    double=double.next.next;
-   console.log(single);
-  
-    
+    single = single.next;
+    double = double.next.next;
+    // console.log(single);
+
+
   }
   return single.value;
 
 }
 
+function isCycle(list) {
+  let single = list.head;
+  let double = list.head;
 
+  while (double !== null) {
+    if (double.next === null) {
+      return false;
+    }
+
+    single = single.next;
+    double = double.next.next;
+    if (double === single) return true;
+    // console.log(single);
+  }
+  return false;
+
+}
 
 
 function main() {
   const SLL = new LinkedList();
+  const CLL = new CycleList();
 
-  SLL.insertFirst("Apollo");
-  SLL.insertLast("Boomer");
-  SLL.insertLast("Helo");
-  SLL.insertLast("Husker");
-  SLL.insertLast("Starbuck");
-  SLL.insertLast("Last")
+  SLL.insertFirst('Apollo');
+  SLL.insertLast('Boomer');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Starbuck');
+  SLL.insertLast('Last');
 
   console.log(display(SLL));
 
   console.log(display(SLL));
 
-   reverse(SLL);
+  reverse(SLL);
 
   console.log(display(SLL));
   console.log(thirdFromEnd(SLL));
   console.log(middleOfList(SLL));
 
-  // SLL.insertBefore('Test', 'Helo');
-  // SLL.insertAfter('Boo', 'Boomer');
-  // SLL.insertAt('TestAT', 0);
 
-  // console.log(SLL);
-  // console.log(display(SLL));
-  // console.log(size(SLL));
-  // console.log('SLL', isEmpty(SLL));
-  // console.log('New', isEmpty(new LinkedList()));
-  // console.log('Previous Item', findPrevious('Boo', SLL));
-  // console.log('Last Item', findLast(SLL));
+
+  CLL.insertFirst('Apollo');
+  CLL.insertLast('Boomer');
+  CLL.insertLast('Helo');
+  CLL.insertLast('Husker');
+  CLL.insertLast('Starbuck');
+  CLL.insertLast('Last');
+
+  console.log(CLL.print());
+
+  console.log('SLL', isCycle(SLL));
+  console.log('CLL', isCycle(CLL));
 }
 
 main();

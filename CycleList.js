@@ -5,13 +5,15 @@ class _Node {
   }
 }
 
-class LinkedList {
+class CycleList {
   constructor() {
     this.head = null;
+    this.last = null;
   }
 
   insertFirst(item) {
     this.head = new _Node(item, this.head);
+    this.last = this.head;
   }
 
   insertLast(item) {
@@ -20,11 +22,12 @@ class LinkedList {
     } else {
       let tempNode = this.head;
 
-      while (tempNode.next !== null) {
+      while (tempNode !== this.last) {
         tempNode = tempNode.next;
       }
 
-      tempNode.next = new _Node(item, null);
+      tempNode.next = new _Node(item, this.head);
+      this.last = tempNode.next;
     }
   }
 
@@ -68,14 +71,14 @@ class LinkedList {
     }
     for (let i = 0; i < index - 1; i++) {
       if (currNode !== null) {
-        // console.log(currNode.value);
+        console.log(currNode.value);
         currNode = currNode.next;
       } else {
-        console.log('Invalid Index');
+        console.log('invalid Index');
         return;
       }
     }
-    // console.log(currNode.value);
+    console.log(currNode.value);
     currNode.next = new _Node(value, currNode.next);
   }
 
@@ -117,17 +120,19 @@ class LinkedList {
   }
 
   print() {
+    console.log('print');
     let list = '';
     let currNode = this.head;
-    while (currNode !== null) {
+    while (currNode !== this.last) {
       list +=
         currNode.next !== null ? `${currNode.value} -> ` : `${currNode.value}`;
 
       currNode = currNode.next;
     }
 
+    list += ` ${this.last.value}`;
     return list;
   }
 }
 
-module.exports = LinkedList;
+module.exports = CycleList;
