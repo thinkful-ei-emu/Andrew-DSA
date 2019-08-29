@@ -1,8 +1,9 @@
-const LinkedList = require('./LinkedList');
-const CycleList = require('./CycleList');
+const LinkedList = require("./LinkedList");
+const CycleList = require("./CycleList");
+const DoubleLinkedList = require("./DoubleLinkedList");
 
 function display(linkedList) {
-  let list = '';
+  let list = "";
   let currNode = linkedList.head;
   while (currNode !== null) {
     list +=
@@ -70,7 +71,6 @@ function reverse(list) {
     curr.next = prev;
     prev = curr;
 
-
     if (next === null) list.head = curr;
     curr = next;
   }
@@ -98,11 +98,8 @@ function middleOfList(list) {
     single = single.next;
     double = double.next.next;
     // console.log(single);
-
-
   }
   return single.value;
-
 }
 
 function isCycle(list) {
@@ -120,20 +117,18 @@ function isCycle(list) {
     // console.log(single);
   }
   return false;
-
 }
-
 
 function main() {
   const SLL = new LinkedList();
   const CLL = new CycleList();
 
-  SLL.insertFirst('Apollo');
-  SLL.insertLast('Boomer');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Starbuck');
-  SLL.insertLast('Last');
+  SLL.insertFirst("Apollo");
+  SLL.insertLast("Boomer");
+  SLL.insertLast("Helo");
+  SLL.insertLast("Husker");
+  SLL.insertLast("Starbuck");
+  SLL.insertLast("Last");
 
   console.log(display(SLL));
 
@@ -145,22 +140,36 @@ function main() {
   console.log(thirdFromEnd(SLL));
   console.log(middleOfList(SLL));
 
-
-
-  CLL.insertFirst('Apollo');
-  CLL.insertLast('Boomer');
-  CLL.insertLast('Helo');
-  CLL.insertLast('Husker');
-  CLL.insertLast('Starbuck');
-  CLL.insertLast('Last');
+  CLL.insertFirst("Apollo");
+  CLL.insertLast("Boomer");
+  CLL.insertLast("Helo");
+  CLL.insertLast("Husker");
+  CLL.insertLast("Starbuck");
+  CLL.insertLast("Last");
 
   console.log(CLL.print());
 
-  console.log('SLL', isCycle(SLL));
-  console.log('CLL', isCycle(CLL));
+  console.log("SLL", isCycle(SLL));
+  console.log("CLL", isCycle(CLL));
 }
 
 main();
+
+function mainDLL() {
+  let dll = new DoubleLinkedList();
+
+  dll.insertFirst("Aquaria");
+  dll.insertLast("Caprica");
+  dll.insertLast("Gemenon");
+  dll.insertLast("Picon");
+  dll.insertLast("Sagittaron");
+  console.log(dll.print());
+
+  dll.remove("Picon");
+  console.log(dll.print());
+}
+
+mainDLL();
 
 /**
  * 4. Mystery Program
