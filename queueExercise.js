@@ -33,3 +33,54 @@ function queueStack(values) {
 
   return queue;
 }
+
+function squareDancePair(dancers) {
+  const maleDancers = new Queue();
+  const femaleDancers = new Queue();
+  for (let dancer of dancers) {
+    if (dancer[0] === 'F') {
+      if (maleDancers.peek() !== null) console.log(`${maleDancers.dequeue()} / ${dancer}`);
+      else femaleDancers.enqueue(dancer);
+    }
+    else {
+      if (femaleDancers.peek() !== null) console.log(`${dancer} / ${femaleDancers.dequeue()}`);
+      else maleDancers.enqueue(dancer);
+    }
+  }
+}
+
+const dancers = [
+  'F Jane',
+  'M Frank',
+  'M John',
+  'M Sherlock',
+  'F Madonna',
+  'M David',
+  'M Christopher',
+  'F Beyonce'
+];
+
+// squareDancePair(dancers);
+
+
+/**
+ * the line continuously gets longer
+ * assuming each time a person is helped
+ * a new person joins the queue
+ */
+function ophidanBank() {
+  const queue = new Queue();
+
+  queue.enqueue(0);
+
+  for (let i = 1; i < 200; i++) {
+    displayQueue(queue);
+    const customer = queue.dequeue();
+    if (Math.floor((Math.random() * 100) + 1) <= 25) {
+      // console.log('requeue');
+      queue.enqueue(customer);
+    }
+    queue.enqueue(i);
+  }
+}
+// ophidanBank();

@@ -29,7 +29,7 @@ class Stack {
     if (this.top !== null) {
       this.top = this.top.next;
     }
-    return top.value;
+    return top !== null ? top.value : null;
   }
 }
 

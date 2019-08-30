@@ -30,6 +30,10 @@ class Queue {
 
     return top.value;
   }
+
+  peek() {
+    return this.top ? this.top.value : null;
+  }
 }
 
 module.exports = Queue;
