@@ -1,9 +1,9 @@
-const LinkedList = require("./LinkedList");
-const CycleList = require("./CycleList");
-const DoubleLinkedList = require("./DoubleLinkedList");
+const LinkedList = require('./LinkedList');
+const CycleList = require('./CycleList');
+const DoubleLinkedList = require('./DoubleLinkedList');
 
 function display(linkedList) {
-  let list = "";
+  let list = '';
   let currNode = linkedList.head;
   while (currNode !== null) {
     list +=
@@ -76,6 +76,20 @@ function reverse(list) {
   }
 }
 
+function reverseDLL(list) {
+  let next = null;
+  let curr = list.head;
+
+  while (curr !== null) {
+    next = curr.next;
+    curr.next = curr.prev;
+    curr.prev = next;
+
+    if (next === null) list.head = curr;
+    curr = next;
+  }
+}
+
 function thirdFromEnd(list) {
   let curr = list.head;
   while (curr !== null) {
@@ -123,12 +137,12 @@ function main() {
   const SLL = new LinkedList();
   const CLL = new CycleList();
 
-  SLL.insertFirst("Apollo");
-  SLL.insertLast("Boomer");
-  SLL.insertLast("Helo");
-  SLL.insertLast("Husker");
-  SLL.insertLast("Starbuck");
-  SLL.insertLast("Last");
+  SLL.insertFirst('Apollo');
+  SLL.insertLast('Boomer');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Starbuck');
+  SLL.insertLast('Last');
 
   console.log(display(SLL));
 
@@ -140,17 +154,17 @@ function main() {
   console.log(thirdFromEnd(SLL));
   console.log(middleOfList(SLL));
 
-  CLL.insertFirst("Apollo");
-  CLL.insertLast("Boomer");
-  CLL.insertLast("Helo");
-  CLL.insertLast("Husker");
-  CLL.insertLast("Starbuck");
-  CLL.insertLast("Last");
+  CLL.insertFirst('Apollo');
+  CLL.insertLast('Boomer');
+  CLL.insertLast('Helo');
+  CLL.insertLast('Husker');
+  CLL.insertLast('Starbuck');
+  CLL.insertLast('Last');
 
   console.log(CLL.print());
 
-  console.log("SLL", isCycle(SLL));
-  console.log("CLL", isCycle(CLL));
+  console.log('SLL', isCycle(SLL));
+  console.log('CLL', isCycle(CLL));
 }
 
 main();
@@ -158,14 +172,17 @@ main();
 function mainDLL() {
   let dll = new DoubleLinkedList();
 
-  dll.insertFirst("Aquaria");
-  dll.insertLast("Caprica");
-  dll.insertLast("Gemenon");
-  dll.insertLast("Picon");
-  dll.insertLast("Sagittaron");
+  dll.insertFirst('Aquaria');
+  dll.insertLast('Caprica');
+  dll.insertLast('Gemenon');
+  dll.insertLast('Picon');
+  dll.insertLast('Sagittaron');
   console.log(dll.print());
 
-  dll.remove("Picon");
+  dll.remove('Picon');
+  console.log(dll.print());
+
+  reverseDLL(dll);
   console.log(dll.print());
 }
 
