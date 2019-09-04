@@ -26,9 +26,10 @@ class Queue {
 
   dequeue() {
     const top = this.top;
-    this.top = this.top.next;
+    
+    if (top !== null) this.top = this.top.next;
 
-    return top.value;
+    return top !== null ? top.value : null;
   }
 
   peek() {

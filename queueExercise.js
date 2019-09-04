@@ -67,9 +67,15 @@ const dancers = [
  * the line continuously gets longer
  * assuming each time a person is helped
  * a new person joins the queue
+ * 
+ * it seems that as long as customers are
+ * joining slower than they are being helped
+ * the queue will remain short
  */
-function ophidanBank() {
+function ophidanBank(interval = 1) {
   const queue = new Queue();
+
+  interval = interval > 0 ? interval : 1;
 
   queue.enqueue(0);
 
@@ -78,9 +84,13 @@ function ophidanBank() {
     const customer = queue.dequeue();
     if (Math.floor((Math.random() * 100) + 1) <= 25) {
       // console.log('requeue');
-      queue.enqueue(customer);
+      customer !== null && queue.enqueue(customer);
     }
-    queue.enqueue(i);
+    if (i % interval === 0)
+      queue.enqueue(i);
   }
 }
-// ophidanBank();
+ophidanBank();
+// ophidanBank(1);
+// ophidanBank(2);
+// ophidanBank(4);
